@@ -74,48 +74,63 @@ class _CardExampleState extends State<CardExample> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.water_drop),
-              title: RichText(
-                text: TextSpan(
-                  style: DefaultTextStyle.of(context).style,
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: '$_counter',
-                      style: TextStyle(
-                        color: Colors.black, // Change the color of _counter
-                        fontWeight: FontWeight.bold, // Make _counter bold
-                        fontSize: 25, // Increase the font size of _counter
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Card(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.water_drop),
+                title: RichText(
+                  text: TextSpan(
+                    style: DefaultTextStyle.of(context).style,
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: '$_counter',
+                        style: TextStyle(
+                          color: Colors.black, // Change the color of _counter
+                          fontWeight: FontWeight.bold, // Make _counter bold
+                          fontSize: 25, // Increase the font size of _counter
+                        ),
                       ),
-                    ),
-                    TextSpan(
-                      text: ' /2000 มิลลิลิตร',
-                      style: TextStyle(
-                        color: Colors.grey, // Color of "/2000 มิลลิลิตร"
-                        fontSize: 15, // Font size of "/2000 มิลลิลิตร"
+                      TextSpan(
+                        text: ' /2000 มิลลิลิตร',
+                        style: TextStyle(
+                          color: Colors.grey, // Color of "/2000 มิลลิลิตร"
+                          fontSize: 15, // Font size of "/2000 มิลลิลิตร"
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(width: 8),
-                TextButton(
-                  child: const Text('LISTEN'),
-                  onPressed: () {_incrementCounter(); },
-                ),
-                const SizedBox(width: 8),
-              ],
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(width: 8),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: TextButton(
+                      child:
+                      const Text('+ 250 มิลิลิตร'),
+                      onPressed: () {_incrementCounter(); },
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.black12),
+                              borderRadius: BorderRadius.circular(50.0)
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

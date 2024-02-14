@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
-class SettingsView extends StatefulWidget {
-  const SettingsView({super.key});
+class WalkView extends StatefulWidget {
+  const WalkView({super.key});
 
   @override
-  State<SettingsView> createState() => _SettingsViewState();
+  State<WalkView> createState() => _WalkViewState();
 }
 
-class _SettingsViewState extends State<SettingsView> {
+class _WalkViewState extends State<WalkView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +19,7 @@ class _SettingsViewState extends State<SettingsView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(
-              Icons.settings,
+              Icons.directions_walk,
               color: Colors.indigoAccent,
               size: 100,
             ),
@@ -27,7 +27,7 @@ class _SettingsViewState extends State<SettingsView> {
               height: 8,
             ),
             const Text(
-              "Settings",
+              "Walk",
               style: TextStyle(fontSize: 30),
             ),
             const SizedBox(
@@ -40,7 +40,7 @@ class _SettingsViewState extends State<SettingsView> {
                 context.goNamed("subSetting");
               },
               child: const Text(
-                "Navigate To Sub Settings View",
+                "Navigate To Sub Walk View",
                 style: TextStyle(color: Colors.white),
               ),
             ),

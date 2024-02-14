@@ -6,6 +6,8 @@ import 'package:mobiletest3/views/player/player_view.dart';
 import 'package:mobiletest3/views/settings/settings_view.dart';
 import 'package:mobiletest3/views/settings/sub_setting_view.dart';
 import 'package:mobiletest3/views/home/sleep/sleep_view.dart';
+import 'package:mobiletest3/views/walk/walk_setting_view.dart';
+import 'package:mobiletest3/views/walk/walk_view.dart';
 import 'package:mobiletest3/views/wrapper/main_wrapper.dart';
 
 class AppNavigation {
@@ -19,6 +21,9 @@ class AppNavigation {
   GlobalKey<NavigatorState>(debugLabel: 'shellHome');
   static final _shellNavigatorSettings =
   GlobalKey<NavigatorState>(debugLabel: 'shellSettings');
+
+  static final _shellNavigatorWalk =
+  GlobalKey<NavigatorState>(debugLabel: 'shellWalk');
 
   // GoRouter configuration
   static final GoRouter router = GoRouter(
@@ -34,6 +39,31 @@ class AppNavigation {
           );
         },
         branches: <StatefulShellBranch>[
+          // Walk
+          StatefulShellBranch(
+            navigatorKey: _shellNavigatorWalk,
+            routes: <RouteBase>[
+              GoRoute(
+                path: "/walk",
+                name: "Walk",
+                builder: (BuildContext context, GoRouterState state) =>
+                const WalkView(),
+                routes: [
+                  GoRoute(
+                    path: 'subWalk',
+                    name: 'subWalk',
+                    pageBuilder: (context, state) => CustomTransitionPage<void>(
+                      key: state.pageKey,
+                      child: const SubWalkView(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) =>
+                          FadeTransition(opacity: animation, child: child),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
           /// Brach Home
           StatefulShellBranch(
             navigatorKey: _shellNavigatorHome,
