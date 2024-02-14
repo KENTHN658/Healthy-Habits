@@ -33,7 +33,7 @@ class _SettingsViewState extends State<SettingsView> {
             const SizedBox(
               height: 12,
             ),
-            WaterClickAnimation(),
+
             MaterialButton(
               color: Colors.indigoAccent,
               onPressed: () {
@@ -43,57 +43,6 @@ class _SettingsViewState extends State<SettingsView> {
                 "Navigate To Sub Settings View",
                 style: TextStyle(color: Colors.white),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class WaterClickAnimation extends StatefulWidget {
-  @override
-  _WaterClickAnimationState createState() => _WaterClickAnimationState();
-}
-
-class _WaterClickAnimationState extends State<WaterClickAnimation> {
-  double _progress = 0.0;
-
-  void _updateProgress() {
-    setState(() {
-      _progress += 0.1; // Increase progress when clicked
-      if (_progress > 1.0) {
-        _progress = 1.0; // Set progress to 1.0 when it exceeds 1.0
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: GestureDetector(
-        onTap: _updateProgress,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: 200,
-              height: 200,
-              child: LiquidCircularProgressIndicator(
-                value: _progress, // Use the progress value to determine the water level
-                borderColor: Colors.blueAccent,
-                borderWidth: 5.0,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
-                center: Text(
-                  "${(_progress * 100).toStringAsFixed(0)}%",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                direction: Axis.vertical,
-              ),
-            ),
-            Text(
-              'Tap to Add Water',
-              style: TextStyle(fontSize: 16),
             ),
           ],
         ),

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobiletest3/views/home/home_view.dart';
 import 'package:mobiletest3/views/home/sub_home_view.dart';
-import 'package:mobiletest3/views/player/player_view.dart';
+
 import 'package:mobiletest3/views/settings/settings_view.dart';
 import 'package:mobiletest3/views/settings/sub_setting_view.dart';
-import 'package:mobiletest3/views/home/sleep/sleep_view.dart';
+
 import 'package:mobiletest3/views/walk/walk_setting_view.dart';
 import 'package:mobiletest3/views/walk/walk_view.dart';
 import 'package:mobiletest3/views/wrapper/main_wrapper.dart';
@@ -125,14 +125,14 @@ class AppNavigation {
       ),
 
       /// Player
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: '/player',
-        name: "Player",
-        builder: (context, state) => PlayerView(
-          key: state.pageKey,
-        ),
-      )
+      // GoRoute(
+      //   parentNavigatorKey: _rootNavigatorKey,
+      //   path: '/player',
+      //   name: "Player",
+      //   builder: (context, state) => wPlayerVie(
+      //     key: state.pageKey,
+      //   ),
+      // )
 
     ],
   );
