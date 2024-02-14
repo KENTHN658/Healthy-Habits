@@ -11,10 +11,6 @@ class _SubHomeViewState extends State<SubHomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        title: const Text("Sub Home View"),
-      ),
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,

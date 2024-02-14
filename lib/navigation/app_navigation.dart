@@ -5,6 +5,7 @@ import 'package:mobiletest3/views/home/sub_home_view.dart';
 import 'package:mobiletest3/views/player/player_view.dart';
 import 'package:mobiletest3/views/settings/settings_view.dart';
 import 'package:mobiletest3/views/settings/sub_setting_view.dart';
+import 'package:mobiletest3/views/home/sleep/sleep_view.dart';
 import 'package:mobiletest3/views/wrapper/main_wrapper.dart';
 
 class AppNavigation {
@@ -102,6 +103,7 @@ class AppNavigation {
           key: state.pageKey,
         ),
       )
+
     ],
   );
 }

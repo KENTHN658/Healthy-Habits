@@ -11,10 +11,6 @@ class _SubSettingsViewState extends State<SubSettingsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        title: const Text("Sub Settings View"),
-      ),
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
