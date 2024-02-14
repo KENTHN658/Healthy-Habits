@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'dart:async';
 
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 
@@ -21,34 +19,12 @@ class _HomeViewState extends State<HomeView> {
           width: double.infinity,
           height: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Icon(
-                Icons.home,
-                color: Colors.red,
-                size: 100,
-              ),
               const SizedBox(
                 height: 8,
               ),
-              const Text(
-                "Home",
-                style: TextStyle(fontSize: 30),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              CardExample(),
-              MaterialButton(
-                color: Colors.redAccent,
-                onPressed: () {
-                  Navigator.pushNamed(context, "subHome");
-                },
-                child: const Text(
-                  "Navigate To Sub Home View",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+              CardWater(),
             ],
           ),
         ),
@@ -57,17 +33,26 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
-class CardExample extends StatefulWidget {
+class CardWater extends StatefulWidget {
   @override
-  State<CardExample> createState() => _CardExampleState();
+  State<CardWater> createState() => _CardWaterState();
 }
 
-class _CardExampleState extends State<CardExample> {
+class _CardWaterState extends State<CardWater> {
   int _counter = 0;
-
+  double _progress = 0.0;
   void _incrementCounter() {
     setState(() {
       _counter = _counter + 250;
+    });
+  }
+
+  void _updateProgress() {
+    setState(() {
+      _progress += 0.125; // Increase progress when clicked
+      if (_progress > 1.0) {
+        _progress = 1.0; // Set progress to 1.0 when it exceeds 1.0
+      }
     });
   }
 
@@ -108,79 +93,53 @@ class _CardExampleState extends State<CardExample> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextButton(
-                      child: const Text('+ 250 มิลิลิตร'),
-                      onPressed: () {
-                        _incrementCounter();
-                      },
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.black12),
-                              borderRadius: BorderRadius.circular(50.0)),
-                        ),
+                  TextButton(
+                    child: const Text('+ 250 มิลิลิตร'),
+                    onPressed: () {
+                      _incrementCounter();
+                      _updateProgress();
+                    },
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(50.0)),
                       ),
                     ),
                   ),
                 ],
               ),
-              WaterClickAnimation(), // รูปดาวที่เพิ่มเข้ามา
+              Column(
+                children: [
+                  GestureDetector(
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          child: LiquidCircularProgressIndicator(
+                            value:
+                                _progress, // Use the progress value to determine the water level
+                            borderColor: Colors.blueAccent,
+                            borderWidth: 5.0,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.blueAccent),
+                            center: Text(
+                              "${(_progress * 100).toStringAsFixed(0)}%",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            direction: Axis.vertical,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class WaterClickAnimation extends StatefulWidget {
-  @override
-  _WaterClickAnimationState createState() => _WaterClickAnimationState();
-}
-
-class _WaterClickAnimationState extends State<WaterClickAnimation> {
-  double _progress = 0.0;
-
-  void _updateProgress() {
-    setState(() {
-      _progress += 0.1; // Increase progress when clicked
-      if (_progress > 1.0) {
-        _progress = 1.0; // Set progress to 1.0 when it exceeds 1.0
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: GestureDetector(
-        onTap: _updateProgress,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: 100,
-              height: 100,
-              child: LiquidCircularProgressIndicator(
-                value:
-                    _progress, // Use the progress value to determine the water level
-                borderColor: Colors.blueAccent,
-                borderWidth: 5.0,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
-                center: Text(
-                  "${(_progress * 100).toStringAsFixed(0)}%",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                direction: Axis.vertical,
-              ),
-            ),
-            Text(
-              'Tap to Add Water',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
         ),
       ),
     );
