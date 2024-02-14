@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 import 'package:mobiletest3/widgets/cardsleep.dart';
 import 'package:mobiletest3/widgets/cardwater.dart';
 
@@ -27,7 +25,7 @@ class _HomeViewState extends State<HomeView> {
                 height: 8,
               ),
               CardWater(),
-              sleepCard(),
+
             ],
           ),
         ),

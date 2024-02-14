@@ -1,67 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
+    as picker;
 
-class sleepCard extends StatefulWidget {
-  const sleepCard({super.key});
+class SleepCard extends StatefulWidget {
+  const SleepCard({Key? key});
 
   @override
-  State<sleepCard> createState() => _sleepCardState();
+  State<SleepCard> createState() => _SleepCardState();
 }
 
-class _sleepCardState extends State<sleepCard> {
+class _SleepCardState extends State<SleepCard> {
+  DateTime? selectedTime;
+
+  void _showTimePicker() {
+    picker.DatePicker.showTimePicker(
+      context,
+      showTitleActions: true,
+      onConfirm: (time) {
+        setState(() {
+          selectedTime = time;
+        });
+      },
+      currentTime: DateTime.now(),
+    );
+  }
+
+  DateTime? startTime;
+  DateTime? endTime;
+
+  void startTimer() {
+    setState(() {
+      startTime = DateTime.now();
+      endTime = null;
+    });
+  }
+
+  void stopTimer() {
+    setState(() {
+      endTime = DateTime.now();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        elevation: 2,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      style: DefaultTextStyle.of(context).style,
-                      children: [
-                        WidgetSpan(
-                          child: Icon(Icons.nights_stay_sharp),
-                        ),
-                        TextSpan(
-                          text: '',
-                          style: TextStyle(
-                            color: Colors.black, // Change the color of _counter
-                            fontWeight: FontWeight.bold, // Make _counter bold
-                            fontSize: 25, // Increase the font size of _counter
-                          ),
-                        ),
-                        TextSpan(
-                          text: ' /2000 มิลลิลิตร',
-                          style: TextStyle(
-                            color: Colors.grey, // Color of "/2000 มิลลิลิตร"
-                            fontSize: 15, // Font size of "/2000 มิลลิลิตร"
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  TextButton(
-                    child: const Text('+ 250 มิลิลิตร'),
-                    onPressed: () {
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            side: BorderSide(color: Colors.black12),
-                            borderRadius: BorderRadius.circular(50.0)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Column(),
-            ],
-          ),
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'เวลาเข้านอน: ${startTime != null ? startTime!.toString() : 'ยังไม่ได้เริ่ม'}',
+            ),
+            Text(
+              'เวลาที่นอน: ${endTime != null ? endTime!.difference(startTime!).toString() : 'ยังไม่ได้หยุด'}',
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: startTimer,
+              child: Text('เริ่มต้นจับเวลา'),
+            ),
+            ElevatedButton(
+              onPressed: stopTimer,
+              child: Text('หยุดจับเวลา'),
+            ),
+          ],
         ),
       ),
     );

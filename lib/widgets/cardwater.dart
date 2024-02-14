@@ -35,6 +35,7 @@ class _CardWaterState extends State<CardWater> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RichText(
                     text: TextSpan(
@@ -70,8 +71,9 @@ class _CardWaterState extends State<CardWater> {
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                            side: BorderSide(color: Colors.black12),
-                            borderRadius: BorderRadius.circular(50.0)),
+                          side: BorderSide(color: Colors.black12),
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
                       ),
                     ),
                   ),
@@ -88,7 +90,7 @@ class _CardWaterState extends State<CardWater> {
                           height: 100,
                           child: LiquidCircularProgressIndicator(
                             value:
-                            _progress, // Use the progress value to determine the water level
+                                _progress, // Use the progress value to determine the water level
                             borderColor: Colors.blueAccent,
                             borderWidth: 5.0,
                             valueColor: AlwaysStoppedAnimation<Color>(

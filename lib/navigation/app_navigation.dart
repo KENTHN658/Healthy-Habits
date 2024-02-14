@@ -106,7 +106,7 @@ class AppNavigation {
                     pageBuilder: (context, state) {
                       return CustomTransitionPage<void>(
                         key: state.pageKey,
-                        child: const SubSettingsView(),
+                        child: const SleepCard(),
                         transitionsBuilder: (
                             context,
                             animation,
