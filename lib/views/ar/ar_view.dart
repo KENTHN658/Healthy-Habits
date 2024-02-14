@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
-class SettingsView extends StatefulWidget {
-  const SettingsView({super.key});
+class ARView extends StatefulWidget {
+  const ARView({super.key});
 
   @override
-  State<SettingsView> createState() => _SettingsViewState();
+  State<ARView> createState() => _ARViewState();
 }
 
-class _SettingsViewState extends State<SettingsView> {
+class _ARViewState extends State<ARView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +18,7 @@ class _SettingsViewState extends State<SettingsView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(
-              Icons.settings,
+              Icons.visibility_rounded,
               color: Colors.indigoAccent,
               size: 100,
             ),
@@ -27,7 +26,7 @@ class _SettingsViewState extends State<SettingsView> {
               height: 8,
             ),
             const Text(
-              "Settings",
+              "AR",
               style: TextStyle(fontSize: 30),
             ),
             const SizedBox(
@@ -40,7 +39,7 @@ class _SettingsViewState extends State<SettingsView> {
                 context.goNamed("subSetting");
               },
               child: const Text(
-                "Navigate To Sub Settings View",
+                "Navigate To Sub AR View",
                 style: TextStyle(color: Colors.white),
               ),
             ),

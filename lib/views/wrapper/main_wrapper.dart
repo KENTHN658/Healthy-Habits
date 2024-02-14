@@ -14,7 +14,7 @@ class MainWrapper extends StatefulWidget {
 }
 
 class _MainWrapperState extends State<MainWrapper> {
-  int selectedIndex = 0;
+  int selectedIndex = 1;
 
   void _goBranch(int index) {
     widget.navigationShell.goBranch(

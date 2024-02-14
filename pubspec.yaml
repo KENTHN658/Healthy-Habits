@@ -39,6 +39,10 @@ dependencies:
   go_router: ^13.2.0
   sliding_clipped_nav_bar: ^3.1.0+4
   liquid_progress_indicator_v2: ^0.5.0
+  camera:
+  path_provider:
+  path:
+
 
 dev_dependencies:
   flutter_test:

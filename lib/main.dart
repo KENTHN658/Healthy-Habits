@@ -1,7 +1,8 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:mobiletest3/navigation/app_navigation.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
 }
 

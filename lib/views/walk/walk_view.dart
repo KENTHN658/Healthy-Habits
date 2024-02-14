@@ -1,103 +1,113 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
+import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:pedometer/pedometer.dart';
 class WalkView extends StatefulWidget {
   const WalkView({super.key});
-
   @override
   State<WalkView> createState() => _WalkViewState();
 }
 
 class _WalkViewState extends State<WalkView> {
+  late Stream<StepCount> _stepCountStream;
+  late Stream<PedestrianStatus> _pedestrianStatusStream;
+  String _status = '?', _steps = '?';
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.directions_walk,
-              color: Colors.indigoAccent,
-              size: 100,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            const Text(
-              "Walk",
-              style: TextStyle(fontSize: 30),
-            ),
-            const SizedBox(
-              height: 12,
-            ),
-            WaterClickAnimation(),
-            MaterialButton(
-              color: Colors.indigoAccent,
-              onPressed: () {
-                context.goNamed("subSetting");
-              },
-              child: const Text(
-                "Navigate To Sub Walk View",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+  void initState() {
+    super.initState();
+    initPlatformState();
   }
-}
 
-class WaterClickAnimation extends StatefulWidget {
-  @override
-  _WaterClickAnimationState createState() => _WaterClickAnimationState();
-}
-
-class _WaterClickAnimationState extends State<WaterClickAnimation> {
-  double _progress = 0.0;
-
-  void _updateProgress() {
+  void onStepCount(StepCount event) {
+    print(event);
     setState(() {
-      _progress += 0.1; // Increase progress when clicked
-      if (_progress > 1.0) {
-        _progress = 1.0; // Set progress to 1.0 when it exceeds 1.0
-      }
+      _steps = event.steps.toString();
     });
   }
 
+  void onPedestrianStatusChanged(PedestrianStatus event) {
+    print(event);
+    setState(() {
+      _status = event.status;
+    });
+  }
+
+  void onPedestrianStatusError(error) {
+    print('onPedestrianStatusError: $error');
+    setState(() {
+      _status = 'Pedestrian Status not available';
+    });
+    print(_status);
+  }
+
+  void onStepCountError(error) {
+    print('onStepCountError: $error');
+    setState(() {
+      _steps = 'Step Count not available';
+    });
+  }
+
+  void initPlatformState() {
+    _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
+    _pedestrianStatusStream
+        .listen(onPedestrianStatusChanged)
+        .onError(onPedestrianStatusError);
+
+    _stepCountStream = Pedometer.stepCountStream;
+    _stepCountStream.listen(onStepCount).onError(onStepCountError);
+
+    if (!mounted) return;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: GestureDetector(
-        onTap: _updateProgress,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: 200,
-              height: 200,
-              child: LiquidCircularProgressIndicator(
-                value: _progress, // Use the progress value to determine the water level
-                borderColor: Colors.blueAccent,
-                borderWidth: 5.0,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
-                center: Text(
-                  "${(_progress * 100).toStringAsFixed(0)}%",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                direction: Axis.vertical,
+    return
+      Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Steps Taken',
+                style: TextStyle(fontSize: 30),
               ),
-            ),
-            Text(
-              'Tap to Add Water',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
+              Text(
+                _steps,
+                style: TextStyle(fontSize: 60),
+              ),
+              Divider(
+                height: 100,
+                thickness: 0,
+                color: Colors.white,
+              ),
+              Text(
+                'Pedestrian Status',
+                style: TextStyle(fontSize: 30),
+              ),
+              Icon(
+                _status == 'walking'
+                    ? Icons.directions_walk
+                    : _status == 'stopped'
+                    ? Icons.accessibility_new
+                    : Icons.error,
+                size: 100,
+              ),
+              Center(
+                child: Text(
+                  _status,
+                  style: _status == 'walking' || _status == 'stopped'
+                      ? TextStyle(fontSize: 30)
+                      : TextStyle(fontSize: 20, color: Colors.red),
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-    );
+      );
+
   }
 }
+
