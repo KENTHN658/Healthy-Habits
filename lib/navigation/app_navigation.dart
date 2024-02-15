@@ -124,7 +124,7 @@ class AppNavigation {
         ],
       ),
 
-      /// Player
+      // / Player
       // GoRoute(
       //   parentNavigatorKey: _rootNavigatorKey,
       //   path: '/player',
