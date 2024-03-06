@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:mobiletest3/provider/coin_display_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/walk_provider.dart';
 
-class CardWalk extends StatelessWidget {
+class CardWalk extends StatefulWidget {
   const CardWalk({Key? key}) : super(key: key);
 
   @override
+  State<CardWalk> createState() => _CardWalkState();
+}
+
+class _CardWalkState extends State<CardWalk> {
+
+  void _incrementCounter(CoinDisplayProvider coin) {
+    setState(() {
+      coin.incrementScorePoints(10);
+    });
+  }
+  @override
   Widget build(BuildContext context) {
     final walkProvider = Provider.of<WalkProvider>(context);
+    if ((int.parse(walkProvider.steps)) == 7000) {
+      _incrementCounter;
+    }
     return Card(
       elevation: 5,
         margin: EdgeInsets.all(20),
@@ -100,7 +115,7 @@ class CardWalk extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.black), // Adjusted text color
                 ),
                 Text(
-                  "10,000 ก้าว",
+                  "7,000 ก้าว",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black), // Adjusted text color
                 ),
               ],
