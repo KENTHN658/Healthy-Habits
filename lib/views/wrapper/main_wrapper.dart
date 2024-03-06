@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mobiletest3/views/wrapper/sideBar.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
+
 
 class MainWrapper extends StatefulWidget {
   const MainWrapper({
@@ -26,17 +28,19 @@ class _MainWrapperState extends State<MainWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: sideBar(),
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            semanticLabel: 'menu',
-          ),
-          onPressed: () {
-            print('Menu button');
-          },
-        ),
-        title: Center(child: const Text('SHRINE')),
+        // leading: IconButton(
+        //   icon: const Icon(
+        //     Icons.menu,
+        //     semanticLabel: 'menu',
+        //   ),
+        //   onPressed: () {
+        //     print('Menu button');
+        //   },
+        // ),
+        title: Center(child: const Text('Healthy Habits')),
+        backgroundColor: Colors.pinkAccent,
       ),
       body: SizedBox(
         width: double.infinity,
