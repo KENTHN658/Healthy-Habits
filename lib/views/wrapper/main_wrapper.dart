@@ -33,10 +33,10 @@ class _MainWrapperState extends State<MainWrapper> {
         title: Center(child: const Text('Healthy Habits')),
         backgroundColor: Colors.pinkAccent,
         actions: [
-          // IconButton(
-          //   icon: Icon(Icons.monetization_on),
-          //   onPressed: _incrementScorePoints,
-          // ),
+          IconButton(
+            icon: Icon(Icons.monetization_on),
+            onPressed: ()=>print("123"),
+          ),
           SizedBox(
             width: 10,
           ),

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobiletest3/views/home/home_view.dart';
-import 'package:mobiletest3/views/home/sub_home_view.dart';
+
 
 import 'package:mobiletest3/views/ar/ar_view.dart';
-import 'package:mobiletest3/views/ar/ar_setting_view.dart';
 
-import 'package:mobiletest3/views/walk/walk_setting_view.dart';
 import 'package:mobiletest3/views/walk/walk_view.dart';
 import 'package:mobiletest3/views/wrapper/main_wrapper.dart';
 
@@ -48,19 +46,7 @@ class AppNavigation {
                 name: "Walk",
                 builder: (BuildContext context, GoRouterState state) =>
                 const WalkView(),
-                routes: [
-                  GoRoute(
-                    path: 'subWalk',
-                    name: 'subWalk',
-                    pageBuilder: (context, state) => CustomTransitionPage<void>(
-                      key: state.pageKey,
-                      child: const SubWalkView(),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) =>
-                          FadeTransition(opacity: animation, child: child),
-                    ),
-                  ),
-                ],
+
               ),
             ],
           ),
@@ -73,19 +59,7 @@ class AppNavigation {
                 name: "Home",
                 builder: (BuildContext context, GoRouterState state) =>
                 const HomeView(),
-                routes: [
-                  GoRoute(
-                    path: 'subHome',
-                    name: 'subHome',
-                    pageBuilder: (context, state) => CustomTransitionPage<void>(
-                      key: state.pageKey,
-                      child: const SubHomeView(),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) =>
-                          FadeTransition(opacity: animation, child: child),
-                    ),
-                  ),
-                ],
+
               ),
             ],
           ),
@@ -99,25 +73,7 @@ class AppNavigation {
                 name: "Settings",
                 builder: (BuildContext context, GoRouterState state) =>
                 const ARView(),
-                routes: [
-                  GoRoute(
-                    path: "subSetting",
-                    name: "subSetting",
-                    pageBuilder: (context, state) {
-                      return CustomTransitionPage<void>(
-                        key: state.pageKey,
-                        child: const SleepCard(),
-                        transitionsBuilder: (
-                            context,
-                            animation,
-                            secondaryAnimation,
-                            child,
-                            ) =>
-                            FadeTransition(opacity: animation, child: child),
-                      );
-                    },
-                  ),
-                ],
+
               ),
             ],
           ),

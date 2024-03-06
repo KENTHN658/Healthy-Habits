@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobiletest3/views/ar/ar_setting_view.dart';
 import 'package:mobiletest3/widgets/cardwalk.dart';
 import 'package:mobiletest3/widgets/cardwater.dart';
 import 'package:mobiletest3/widgets/cardsleep.dart';

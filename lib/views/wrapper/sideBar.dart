@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobiletest3/views/shopping/PurchaseHistoryPage.dart';
+import 'package:mobiletest3/views/shopping/shopping.dart';
+
 
 class sideBar extends StatelessWidget {
   const sideBar({super.key});
@@ -21,9 +24,24 @@ class sideBar extends StatelessWidget {
                     image: AssetImage('images/forest.jpg'), fit: BoxFit.cover)),
           ),
           ListTile(
-            leading: Icon(Icons.people),
-            title: Text("Profile"),
-            onTap: ()=> print("profile"),
+            leading: Icon(Icons.shopping_cart),
+            title: Text("Shopping"),
+            onTap: () {
+              // Navigate to the ShoppingPage when tapped
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ShoppingPage(),
+              ));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.history),
+            title: Text("Purchase history"),
+            onTap: () {
+              // Navigate to the ShoppingPage when tapped
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => PurchaseHistoryPage(),
+              ));
+            },
           ),
           ListTile(
             leading: Icon(Icons.notifications),

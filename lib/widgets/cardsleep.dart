@@ -10,20 +10,30 @@ class _CardSleepState extends State<CardSleep> {
   DateTime? startTime;
   DateTime? endTime;
   double _progress = 0.0; // Represents sleep progress
+  bool timerStarted = false;
 
   void startTimer() {
     setState(() {
       startTime = DateTime.now();
       endTime = null;
       _progress = 0.0; // Reset progress when starting
+      timerStarted = true;
     });
   }
 
   void stopTimer() {
-    setState(() {
-      endTime = DateTime.now();
-      _calculateProgress(); // Update progress based on sleep time
-    });
+    if (startTime != null) {
+      setState(() {
+        endTime = DateTime.now();
+        _calculateProgress(); // Update progress based on sleep time
+        timerStarted = false;
+      });
+    } else {
+      // Show a message if the user tries to stop the timer without starting it first
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please start the timer first')),
+      );
+    }
   }
 
   // Calculate progress for the circular indicator
@@ -109,7 +119,7 @@ class _CardSleepState extends State<CardSleep> {
                       EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                       primary: Colors.purpleAccent, // Adjusted primary color
                     ),
-                    onPressed: startTimer,
+                    onPressed: timerStarted ? null : startTimer,
                     child: Text('เริ่มต้นจับเวลา',
                         style: TextStyle(color: Colors.white)),
                   ),
@@ -121,7 +131,7 @@ class _CardSleepState extends State<CardSleep> {
                       EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                       primary: Colors.pinkAccent, // Adjusted primary color
                     ),
-                    onPressed: stopTimer,
+                    onPressed: timerStarted ? stopTimer : null,
                     child: Text('หยุดจับเวลา',
                         style: TextStyle(color: Colors.white)),
                   ),
@@ -149,3 +159,4 @@ class _CardSleepState extends State<CardSleep> {
     );
   }
 }
+

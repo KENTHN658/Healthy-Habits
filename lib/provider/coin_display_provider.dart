@@ -8,4 +8,8 @@ class CoinDisplayProvider extends ChangeNotifier {
     scorePoints += points;
     notifyListeners();
   }
+  void decrementScorePoints(int points) {
+    scorePoints -= points;
+    notifyListeners();
+  }
 }
