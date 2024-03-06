@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobiletest3/views/wrapper/sideBar.dart';
+import 'package:mobiletest3/widgets/coindisplay.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
-
 
 class MainWrapper extends StatefulWidget {
   const MainWrapper({
@@ -30,29 +30,27 @@ class _MainWrapperState extends State<MainWrapper> {
     return Scaffold(
       drawer: sideBar(),
       appBar: AppBar(
-        // leading: IconButton(
-        //   icon: const Icon(
-        //     Icons.menu,
-        //     semanticLabel: 'menu',
-        //   ),
-        //   onPressed: () {
-        //     print('Menu button');
-        //   },
-        // ),
         title: Center(child: const Text('Healthy Habits')),
         backgroundColor: Colors.pinkAccent,
+        actions: [
+          // IconButton(
+          //   icon: Icon(Icons.monetization_on),
+          //   onPressed: _incrementScorePoints,
+          // ),
+          SizedBox(
+            width: 10,
+          ),
+          CoinDisplay(), // Display the number of coins
+          SizedBox(
+            width: 20,
+          ),
+        ],
       ),
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: widget.navigationShell,
       ),
-      // floatingActionButton: FloatingActionButton(
-      //     onPressed: () {
-      //       context.push(context.namedLocation('Player'));
-      //     },
-      //     backgroundColor: Colors.deepPurpleAccent,
-      //     child: const Icon(Icons.home_rounded)),
       bottomNavigationBar: SlidingClippedNavBar(
         backgroundColor: Colors.white,
         onButtonPressed: (index) {
@@ -77,7 +75,6 @@ class _MainWrapperState extends State<MainWrapper> {
             icon: Icons.view_in_ar_rounded,
             title: 'AR',
           ),
-
         ],
       ),
     );

@@ -1,6 +1,9 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:mobiletest3/navigation/app_navigation.dart';
+import 'package:mobiletest3/provider/coin_display_provider.dart';
+import 'package:mobiletest3/provider/walk_provider.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   runApp(const MyApp());
@@ -11,10 +14,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Go Router Example',
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppNavigation.router,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CoinDisplayProvider()),
+        ChangeNotifierProvider(create: (context) => WalkProvider()),
+      ],
+      child: MaterialApp.router(
+        title: 'Go Router Example',
+        debugShowCheckedModeBanner: false,
+        routerConfig: AppNavigation.router,
+      ),
     );
   }
 }

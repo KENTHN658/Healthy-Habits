@@ -43,6 +43,7 @@ dependencies:
   path_provider:
   path:
   flutter_datetime_picker_plus: ^2.0.1
+  provider: ^6.1.2
 
 
 dev_dependencies:

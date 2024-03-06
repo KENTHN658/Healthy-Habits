@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
-import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart'
-as picker;
 
 class CardSleep extends StatefulWidget {
   @override
@@ -9,94 +7,142 @@ class CardSleep extends StatefulWidget {
 }
 
 class _CardSleepState extends State<CardSleep> {
-  DateTime? selectedTime;
-
-  void _showTimePicker() {
-    picker.DatePicker.showTimePicker(
-      context,
-      showTitleActions: true,
-      onConfirm: (time) {
-        setState(() {
-          selectedTime = time;
-        });
-      },
-      currentTime: DateTime.now(),
-    );
-  }
   DateTime? startTime;
   DateTime? endTime;
+  double _progress = 0.0; // Represents sleep progress
 
   void startTimer() {
     setState(() {
       startTime = DateTime.now();
       endTime = null;
+      _progress = 0.0; // Reset progress when starting
     });
   }
 
   void stopTimer() {
     setState(() {
       endTime = DateTime.now();
-    });
-  }
-  int _counter = 0;
-  double _progress = 0.0;
-  void _incrementCounter() {
-    setState(() {
-      _counter = _counter + 250;
+      _calculateProgress(); // Update progress based on sleep time
     });
   }
 
-  void _updateProgress() {
-    setState(() {
-      _progress += 0.125; // Increase progress when clicked
-      if (_progress > 1.0) {
-        _progress = 1.0; // Set progress to 1.0 when it exceeds 1.0
-      }
-    });
+  // Calculate progress for the circular indicator
+  void _calculateProgress() {
+    if (startTime != null && endTime != null) {
+      final duration = endTime!.difference(startTime!).inSeconds;
+      // Assuming 8 hours of sleep is ideal
+      final goalDuration = 8 * 60 * 60;
+      _progress = duration / goalDuration;
+      if (_progress > 1.0) _progress = 1.0;
+    }
+  }
+
+  // Helper Functions for Time Formatting
+  String _formatTime(DateTime time) {
+    return "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
+  }
+
+  String _formatTimeDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitHours = twoDigits(duration.inHours);
+    return "$twoDigitHours:$twoDigitMinutes";
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        elevation: 2,
+        elevation: 4,
+        margin: EdgeInsets.all(20),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          padding: const EdgeInsets.all(25.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Sleep Times
               Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'เวลาเข้านอน: ${startTime != null ? startTime!.toString() : 'ยังไม่ได้เริ่ม'}',
-                    ),
-                    Text(
-                      'เวลาที่นอน: ${endTime != null ? endTime!.difference(startTime!).toString() : 'ยังไม่ได้หยุด'}',
-                    ),
-                    SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: startTimer,
-                      child: Text('เริ่มต้นจับเวลา'),
-                    ),
-                    ElevatedButton(
-                      onPressed: stopTimer,
-                      child: Text('หยุดจับเวลา'),
-                    ),
-                  ],
-              ),
-              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 8,
+                  Text(
+                    'เวลาเข้านอน:',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.purpleAccent,
+                    ),
                   ),
-                  Container(
-                    color: Colors.red,
-                  )
+                  Text(
+                    '${startTime != null ? _formatTime(startTime!) : 'ยังไม่ได้เริ่ม'}',
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'เวลาที่นอน:',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.pinkAccent,
+                    ),
+                  ),
+                  Text(
+                    '${endTime != null ? _formatTimeDuration(endTime!.difference(startTime!)) : 'ยังไม่ได้หยุด'}',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                    ),
+                  ),
+                  SizedBox(height: 25),
                 ],
-              )
-            ],
+              ),
 
+              // Start/Stop Buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                      primary: Colors.purpleAccent, // Adjusted primary color
+                    ),
+                    onPressed: startTimer,
+                    child: Text('เริ่มต้นจับเวลา',
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                      primary: Colors.pinkAccent, // Adjusted primary color
+                    ),
+                    onPressed: stopTimer,
+                    child: Text('หยุดจับเวลา',
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 20),
+
+              // Progress Indicator
+              SizedBox(
+                width: 120,
+                height: 120,
+                child: LiquidCircularProgressIndicator(
+                  value: _progress,
+                  center: Text("${(_progress * 100).toInt()}%"),
+                  borderColor: Colors.black87,
+                  backgroundColor: Colors.transparent,
+                  borderWidth: 5.0,
+                ),
+              ),
+            ],
           ),
         ),
       ),
