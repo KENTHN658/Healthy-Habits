@@ -38,10 +38,7 @@ class _CardWalkState extends State<CardWalk> {
                   "การเดิน",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black), // Adjusted text color
                 ),
-                Icon(
-                  Icons.more_vert,
-                  color: Colors.grey,
-                ),
+
               ],
             ),
             SizedBox(
