@@ -35,6 +35,7 @@ class _CardWaterState extends State<CardWater> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     final coin = Provider.of<CoinDisplayProvider>(context);
@@ -48,80 +49,83 @@ class _CardWaterState extends State<CardWater> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      style: TextStyle(
-                        fontSize: 25, // Increase the font size of _counter
-                        fontWeight: FontWeight.bold, // Make _counter bold
-                        color: Colors.black, // Change the color of _counter
-                      ),
-                      children: [
-                        WidgetSpan(
-                          child: Icon(Icons.water_drop, color: Colors.lightBlue[400]), // Adjusted water drop icon color
+              Expanded(
+                flex: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          fontSize: 25, // Increase the font size of _counter
+                          fontWeight: FontWeight.bold, // Make _counter bold
+                          color: Colors.black, // Change the color of _counter
                         ),
-                        TextSpan(
-                          text: '$_counter',
-                        ),
-                        TextSpan(
-                          text: ' /2000 มิลลิลิตร',
-                          style: TextStyle(
-                            fontSize: 15, // Font size of "/2000 มิลลิลิตร"
-                            color: Colors.grey, // Color of "/2000 มิลลิลิตร"
+                        children: [
+                          WidgetSpan(
+                            child: Icon(Icons.water_drop, color: Colors.lightBlue[400]), // Adjusted water drop icon color
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  TextButton(
-                    child: const Text('+ 250 มิลิลิตร'),
-                    onPressed: () {
-                      _incrementCounter(coin);
-                      _updateProgress(coin);
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          side: BorderSide(color: Colors.black12),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  GestureDetector(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          child: LiquidCircularProgressIndicator(
-                            value: _progress, // Use the progress value to determine the water level
-                            borderColor: Colors.lightBlue[400], // Adjusted border color
-                            borderWidth: 5.0,
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.lightBlue.shade400), // Adjusted progress color
-                            center: Text(
-                              "${(_progress * 100).toStringAsFixed(0)}%",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black, // Adjusted percentage text color
-                              ),
+                          TextSpan(
+                            text: '$_counter',
+                          ),
+                          TextSpan(
+                            text: ' /2000 มิลลิลิตร',
+                            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                fontSize: 15,
+                                color: Colors.grey
                             ),
-                            direction: Axis.vertical,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10), // Add some space between the text and the button
+                    TextButton(
+                      child: const Text('+ 250 มิลลิลิตร'),
+                      onPressed: () {
+                        _incrementCounter(coin);
+                        _updateProgress(coin);
+                      },
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.black12),
+                            borderRadius: BorderRadius.circular(50.0),
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        child: LiquidCircularProgressIndicator(
+                          value: _progress, // Use the progress value to determine the water level
+                          borderColor: Colors.lightBlue[400], // Adjusted border color
+                          borderWidth: 5.0,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.lightBlue.shade400), // Adjusted progress color
+                          center: Text(
+                            "${(_progress * 100).toStringAsFixed(0)}%",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade900, // Adjusted percentage text color
+                            ),
+                          ),
+                          direction: Axis.vertical,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -129,4 +133,6 @@ class _CardWaterState extends State<CardWater> {
       ),
     );
   }
+
 }
+

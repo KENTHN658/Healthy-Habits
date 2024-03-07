@@ -3,7 +3,6 @@ import 'package:mobiletest3/widgets/cardwalk.dart';
 import 'package:mobiletest3/widgets/cardwater.dart';
 import 'package:mobiletest3/widgets/cardsleep.dart';
 import 'package:provider/provider.dart';
-
 import '../../provider/walk_provider.dart';
 
 

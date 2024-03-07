@@ -4,6 +4,7 @@ import 'package:mobiletest3/views/wrapper/sideBar.dart';
 import 'package:mobiletest3/widgets/coindisplay.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
+
 class MainWrapper extends StatefulWidget {
   const MainWrapper({
     required this.navigationShell,
@@ -35,14 +36,13 @@ class _MainWrapperState extends State<MainWrapper> {
               'Healthy Habits',
               style: TextStyle(
                 fontSize: 24, // Adjust the font size as needed
-                fontFamily: 'Raleway',
                 color: Colors.black, // Change the text color
 
             ),
             ),
 
         ),
-        backgroundColor: Colors.pink[200],
+        backgroundColor: Colors.pinkAccent[100],
         actions: [
           IconButton(
             icon: Icon(Icons.monetization_on),

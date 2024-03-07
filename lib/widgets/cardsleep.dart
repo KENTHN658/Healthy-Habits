@@ -89,11 +89,11 @@ class _CardSleepState extends State<CardSleep> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'เวลาที่นอน:',
+                    'ระยะเวลาที่นอน:',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
-                      color: Colors.lightBlue[400],
+                      color: Colors.pink.shade800,
                     ),
                   ),
                   Text(
@@ -129,7 +129,7 @@ class _CardSleepState extends State<CardSleep> {
                           borderRadius: BorderRadius.circular(10)),
                       padding:
                       EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                      primary: Colors.lightBlue.shade400, // Adjusted primary color
+                      primary: Colors.pink.shade800, // Adjusted primary color
                     ),
                     onPressed: timerStarted ? stopTimer : null,
                     child: Text('หยุดจับเวลา',
@@ -146,7 +146,12 @@ class _CardSleepState extends State<CardSleep> {
                 height: 120,
                 child: LiquidCircularProgressIndicator(
                   value: _progress,
-                  center: Text("${(_progress * 100).toInt()}%"),
+                  center: Text("${(_progress * 100).toInt()}%",style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey.shade900, // Adjusted percentage text color
+                  ),),
+
                   borderColor: Colors.pink.shade400,
                   backgroundColor: Colors.transparent,
                   borderWidth: 5.0,
