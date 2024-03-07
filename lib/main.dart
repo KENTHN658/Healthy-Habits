@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:mobiletest3/navigation/app_navigation.dart';
 import 'package:mobiletest3/provider/coin_display_provider.dart';
@@ -6,8 +5,12 @@ import 'package:mobiletest3/provider/walk_provider.dart';
 import 'package:mobiletest3/theme/theme.dart';
 import 'package:provider/provider.dart';
 
+
 Future<void> main() async {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(
+      const MyApp());
 }
 
 class MyApp extends StatelessWidget {

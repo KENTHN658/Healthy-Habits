@@ -69,8 +69,8 @@ class AppNavigation {
             navigatorKey: _shellNavigatorSettings,
             routes: <RouteBase>[
               GoRoute(
-                path: "/settings",
-                name: "Settings",
+                path: "/AR",
+                name: "AR",
                 builder: (BuildContext context, GoRouterState state) =>
                 const ARView(),
 
@@ -80,15 +80,6 @@ class AppNavigation {
         ],
       ),
 
-      // / Player
-      // GoRoute(
-      //   parentNavigatorKey: _rootNavigatorKey,
-      //   path: '/player',
-      //   name: "Player",
-      //   builder: (context, state) => wPlayerVie(
-      //     key: state.pageKey,
-      //   ),
-      // )
 
     ],
   );

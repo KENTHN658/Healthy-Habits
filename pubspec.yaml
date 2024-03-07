@@ -45,6 +45,9 @@ dependencies:
   path:
   flutter_datetime_picker_plus: ^2.0.1
   provider: ^6.1.2
+  sqflite: ^2.0.0+4
+  intl: ^0.17.0
+  shared_preferences: ^2.0.0
 
 
 dev_dependencies:
