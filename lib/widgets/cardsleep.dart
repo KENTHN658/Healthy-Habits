@@ -80,7 +80,7 @@ class _CardSleepState extends State<CardSleep> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
-                      color: Colors.purpleAccent,
+                      color: Colors.pink.shade400,
                     ),
                   ),
                   Text(
@@ -93,7 +93,7 @@ class _CardSleepState extends State<CardSleep> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
-                      color: Colors.pinkAccent,
+                      color: Colors.lightBlue[400],
                     ),
                   ),
                   Text(
@@ -117,7 +117,7 @@ class _CardSleepState extends State<CardSleep> {
                           borderRadius: BorderRadius.circular(10)),
                       padding:
                       EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                      primary: Colors.purpleAccent, // Adjusted primary color
+                      primary: Colors.pink.shade400, // Adjusted primary color
                     ),
                     onPressed: timerStarted ? null : startTimer,
                     child: Text('เริ่มต้นจับเวลา',
@@ -129,7 +129,7 @@ class _CardSleepState extends State<CardSleep> {
                           borderRadius: BorderRadius.circular(10)),
                       padding:
                       EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                      primary: Colors.pinkAccent, // Adjusted primary color
+                      primary: Colors.lightBlue.shade400, // Adjusted primary color
                     ),
                     onPressed: timerStarted ? stopTimer : null,
                     child: Text('หยุดจับเวลา',
@@ -147,7 +147,7 @@ class _CardSleepState extends State<CardSleep> {
                 child: LiquidCircularProgressIndicator(
                   value: _progress,
                   center: Text("${(_progress * 100).toInt()}%"),
-                  borderColor: Colors.black87,
+                  borderColor: Colors.pink.shade400,
                   backgroundColor: Colors.transparent,
                   borderWidth: 5.0,
                 ),
@@ -159,4 +159,7 @@ class _CardSleepState extends State<CardSleep> {
     );
   }
 }
+
+
+
 

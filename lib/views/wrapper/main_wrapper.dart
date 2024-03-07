@@ -30,8 +30,19 @@ class _MainWrapperState extends State<MainWrapper> {
     return Scaffold(
       drawer: sideBar(),
       appBar: AppBar(
-        title: Center(child: const Text('Healthy Habits')),
-        backgroundColor: Colors.pinkAccent,
+        title: Center(
+            child: Text(
+              'Healthy Habits',
+              style: TextStyle(
+                fontSize: 24, // Adjust the font size as needed
+                fontFamily: 'Raleway',
+                color: Colors.black, // Change the text color
+
+            ),
+            ),
+
+        ),
+        backgroundColor: Colors.pink[200],
         actions: [
           IconButton(
             icon: Icon(Icons.monetization_on),
@@ -60,7 +71,7 @@ class _MainWrapperState extends State<MainWrapper> {
           _goBranch(selectedIndex);
         },
         iconSize: 30,
-        activeColor: Colors.black,
+        activeColor: Colors.pink.shade300,
         selectedIndex: selectedIndex,
         barItems: [
           BarItem(

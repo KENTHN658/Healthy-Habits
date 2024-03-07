@@ -21,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
 
     return Scaffold(
       body: Container(
-        color: Colors.green.shade200,
+        color: Colors.pink.shade50,
         child: SizedBox(
           width: double.infinity,
           height: double.infinity,

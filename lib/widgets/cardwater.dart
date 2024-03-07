@@ -60,7 +60,7 @@ class _CardWaterState extends State<CardWater> {
                       ),
                       children: [
                         WidgetSpan(
-                          child: Icon(Icons.water_drop, color: Colors.blueAccent), // Adjusted water drop icon color
+                          child: Icon(Icons.water_drop, color: Colors.lightBlue[400]), // Adjusted water drop icon color
                         ),
                         TextSpan(
                           text: '$_counter',
@@ -103,10 +103,10 @@ class _CardWaterState extends State<CardWater> {
                           height: 100,
                           child: LiquidCircularProgressIndicator(
                             value: _progress, // Use the progress value to determine the water level
-                            borderColor: Colors.pinkAccent, // Adjusted border color
+                            borderColor: Colors.lightBlue[400], // Adjusted border color
                             borderWidth: 5.0,
                             valueColor: AlwaysStoppedAnimation<Color>(
-                                Colors.pinkAccent), // Adjusted progress color
+                                Colors.lightBlue.shade400), // Adjusted progress color
                             center: Text(
                               "${(_progress * 100).toStringAsFixed(0)}%",
                               style: TextStyle(

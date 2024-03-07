@@ -43,7 +43,7 @@ class _CardWalkState extends State<CardWalk> {
                 Text(
                   "การเดิน",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -112,14 +112,14 @@ class _CardWalkState extends State<CardWalk> {
               children: [
                 Text(
                   "เป้าหมายการเดิน",
-                  style: TextStyle(fontSize: 16, color: Colors.black),
+                  style: TextStyle(fontSize: 16, color: Colors.pink.shade400),
                 ),
                 Text(
                   "7,000 ก้าว",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Colors.pink.shade400,
                   ),
                 ),
               ],
