@@ -14,9 +14,7 @@ class WalkView extends StatefulWidget {
 
 class _WalkViewState extends State<WalkView> {
 
-  // String _status = '?', _steps = '?';
 
-  // late final WalkProvider _walkProvider;
 
   @override
   void initState() {
@@ -24,11 +22,7 @@ class _WalkViewState extends State<WalkView> {
     // initPlatformState();
   }
 
-  // void onStepCount(StepCount event) {
-  //   print(event.steps.toString());
-  //   final WalkProvider _walkProvider = Provider.of<WalkProvider>(context, listen: false);
-  //   _walkProvider.setSteps(event.steps.toString());
-  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +39,7 @@ class _WalkViewState extends State<WalkView> {
               ),
               Text(
                 _walkProvider.steps,
-                style: TextStyle(fontSize: 60),
+                style: TextStyle(fontSize: 45),
               ),
               Divider(
                 height: 100,
