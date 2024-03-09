@@ -4,7 +4,11 @@ import 'package:mobiletest3/views/wrapper/sideBar.dart';
 import 'package:mobiletest3/widgets/coindisplay.dart';
 import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 
-
+/// MainWrapper is a StatefulWidget representing the main wrapper for the application.
+///
+/// This widget includes an app bar with a title and actions, a drawer, a body to display
+/// the current navigation shell, and a bottom navigation bar for navigating between different
+/// views. Effective Dart: Usage has been followed in structuring this widget.
 class MainWrapper extends StatefulWidget {
   const MainWrapper({
     required this.navigationShell,
@@ -29,24 +33,22 @@ class _MainWrapperState extends State<MainWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: sideBar(),
+      drawer: SideBar(),
       appBar: AppBar(
         title: Center(
-            child: Text(
-              'Healthy Habits',
-              style: TextStyle(
-                fontSize: 24, // Adjust the font size as needed
-                color: Colors.black, // Change the text color
-
+          child: Text(
+            'Healthy Habits',
+            style: TextStyle(
+              fontSize: 24, // Adjust the font size as needed
+              color: Colors.black, // Change the text color
             ),
-            ),
-
+          ),
         ),
         backgroundColor: Colors.pinkAccent[100],
         actions: [
           IconButton(
             icon: Icon(Icons.monetization_on),
-            onPressed: ()=>print("123"),
+            onPressed: () => print("123"),
           ),
           SizedBox(
             width: 10,

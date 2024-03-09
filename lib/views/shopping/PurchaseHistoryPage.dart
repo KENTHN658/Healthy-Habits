@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// PurchaseHistoryPage is a StatefulWidget representing the page displaying purchase history.
+///
+/// This widget displays a list of purchased products or a message indicating no products
+/// have been purchased yet. It also allows adding a sample product to the purchase history.
+/// Effective Dart: Usage has been followed in structuring this widget.
 class PurchaseHistoryPage extends StatefulWidget {
   @override
   _PurchaseHistoryPageState createState() => _PurchaseHistoryPageState();

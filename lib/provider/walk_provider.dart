@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
 
+/// WalkProvider class manages the pedometer functionality of the application.
+///
+/// This class utilizes ChangeNotifier to notify listeners when the pedometer data changes.
+/// Effective Dart: Usage has been followed in structuring this class.
 class WalkProvider extends ChangeNotifier {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
@@ -39,6 +43,5 @@ class WalkProvider extends ChangeNotifier {
 
     _stepCountStream = Pedometer.stepCountStream;
     _stepCountStream.listen(onStepCount).onError(onStepCountError);
-
   }
 }

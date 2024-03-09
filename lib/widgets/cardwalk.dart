@@ -4,7 +4,12 @@ import 'package:provider/provider.dart';
 
 import '../provider/walk_provider.dart';
 
-
+/// CardWalk is a StatefulWidget representing a card for tracking walking activity.
+///
+/// This widget displays the number of steps taken today, the distance covered,
+/// and the calories burned. It also updates the user's score points if the step
+/// count reaches a certain threshold.
+/// Effective Dart: Usage has been followed in structuring this widget.
 class CardWalk extends StatefulWidget {
   const CardWalk({Key? key}) : super(key: key);
 

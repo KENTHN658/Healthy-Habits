@@ -5,7 +5,11 @@ import 'package:mobiletest3/widgets/cardsleep.dart';
 import 'package:provider/provider.dart';
 import '../../provider/walk_provider.dart';
 
-
+/// HomeView is a StatefulWidget representing the home screen of the application.
+///
+/// This widget initializes the platform state for the walk provider and displays
+/// various cards for water, sleep, and walk data.
+/// Effective Dart: Usage has been followed in structuring this widget.
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 

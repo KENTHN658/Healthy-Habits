@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobiletest3/provider/coin_display_provider.dart';
 import 'package:provider/provider.dart';
 
+/// Widget to display the user's score points (coins).
 class CoinDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
