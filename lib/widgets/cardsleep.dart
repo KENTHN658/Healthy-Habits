@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 
+/// CardSleep is a StatefulWidget representing a card for tracking sleep time.
+///
+/// This widget includes functionality to start and stop a sleep timer, display sleep times,
+/// and show a progress indicator representing the duration of sleep relative to the goal.
+/// Effective Dart: Usage has been followed in structuring this widget.
 class CardSleep extends StatefulWidget {
   @override
   State<CardSleep> createState() => _CardSleepState();
@@ -164,7 +169,3 @@ class _CardSleepState extends State<CardSleep> {
     );
   }
 }
-
-
-
-

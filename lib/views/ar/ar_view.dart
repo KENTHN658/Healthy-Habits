@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+/// ARView is a StatefulWidget representing the augmented reality view.
+///
+/// This widget displays an icon, a title, and a button to navigate to a sub AR view.
+/// Effective Dart: Usage has been followed in structuring this widget.
 class ARView extends StatefulWidget {
   const ARView({super.key});
 

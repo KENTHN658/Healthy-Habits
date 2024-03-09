@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// CoinDisplayProvider class manages the score points of the application.
+///
+/// This class utilizes ChangeNotifier to notify listeners when the score points change.
+/// Effective Dart: Usage has been followed in structuring this class.
 class CoinDisplayProvider extends ChangeNotifier {
   int scorePoints = 0;
   static const String _scoreKey = 'scorePoints';

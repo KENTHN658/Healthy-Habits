@@ -3,6 +3,11 @@ import 'package:mobiletest3/provider/coin_display_provider.dart';
 import 'package:mobiletest3/widgets/coindisplay.dart';
 import 'package:provider/provider.dart';
 
+/// ShoppingPage is a StatefulWidget representing the shopping page of the application.
+///
+/// This widget displays a list of products and allows users to purchase them if they have
+/// enough points. It also displays the user's coin balance. Effective Dart: Usage has been
+/// followed in structuring this widget.
 class ShoppingPage extends StatefulWidget {
   @override
   _ShoppingPageState createState() => _ShoppingPageState();

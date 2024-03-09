@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobiletest3/views/home/home_view.dart';
-
-
 import 'package:mobiletest3/views/ar/ar_view.dart';
-
 import 'package:mobiletest3/views/walk/walk_view.dart';
 import 'package:mobiletest3/views/wrapper/main_wrapper.dart';
 
+/// AppNavigation class handles the navigation flow of the application.
+///
+/// This class utilizes the GoRouter package for routing purposes.
+/// Effective Dart: Usage has been followed in structuring this class.
 class AppNavigation {
   AppNavigation._();
 
@@ -17,9 +18,8 @@ class AppNavigation {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final _shellNavigatorHome =
   GlobalKey<NavigatorState>(debugLabel: 'shellHome');
-  static final _shellNavigatorSettings =
-  GlobalKey<NavigatorState>(debugLabel: 'shellSettings');
-
+  static final _shellNavigatorAR =
+  GlobalKey<NavigatorState>(debugLabel: 'shellAR');
   static final _shellNavigatorWalk =
   GlobalKey<NavigatorState>(debugLabel: 'shellWalk');
 
@@ -46,7 +46,6 @@ class AppNavigation {
                 name: "Walk",
                 builder: (BuildContext context, GoRouterState state) =>
                 const WalkView(),
-
               ),
             ],
           ),
@@ -59,28 +58,24 @@ class AppNavigation {
                 name: "Home",
                 builder: (BuildContext context, GoRouterState state) =>
                 const HomeView(),
-
               ),
             ],
           ),
 
-          /// Brach Setting
+          /// Brach AR
           StatefulShellBranch(
-            navigatorKey: _shellNavigatorSettings,
+            navigatorKey: _shellNavigatorAR,
             routes: <RouteBase>[
               GoRoute(
                 path: "/AR",
                 name: "AR",
                 builder: (BuildContext context, GoRouterState state) =>
                 const ARView(),
-
               ),
             ],
           ),
         ],
       ),
-
-
     ],
   );
 }
