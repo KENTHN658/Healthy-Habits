@@ -1,3 +1,8 @@
+///ผู้จัดทำ
+///640510657 ธนโชติ วัฒนชูสกุล
+///640510658 ธนธรณ์ บุญเชิด
+///640510666 ปราริศา สุระวัง
+
 import 'package:flutter/material.dart';
 import 'package:mobiletest3/navigation/app_navigation.dart';
 import 'package:mobiletest3/provider/coin_display_provider.dart';
